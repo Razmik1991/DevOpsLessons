@@ -1,0 +1,26 @@
+name: Terraform instance
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Instance name'
+        required: true
+        default: 'Test Instance'
+        type: choice
+        options:
+        - Test Instance
+        - Dev Instance
+        - Prod Instance
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Terraform init
+        run: terraform init
+      - name: Terraform Plan
+        run: terraform plan
+      - name: Terraform Apply
+        run: terraform apply
